@@ -1,0 +1,1 @@
+package com.spamemailnew.backend.model; public record PredictionRequest(String text) {}

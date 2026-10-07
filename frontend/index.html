@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpamShield AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            S
+        </div>
+
+        <div class="brand-text">
+            <h3>SpamShield</h3>
+            <span>AI EMAIL SECURITY</span>
+        </div>
+
+    </div>
+
+    <div class="system-status">
+        <span class="status-dot"></span>
+        Model Online
+    </div>
+
+</nav>
+
+
+<!-- MAIN -->
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            JAVA • MACHINE LEARNING • NAIVE BAYES
+        </div>
+
+        <h1>
+            Protect your inbox<br>
+            <span>with intelligence.</span>
+        </h1>
+
+        <p>
+            Analyze suspicious emails using a machine-learning
+            spam classifier built with Java and Spring Boot.
+        </p>
+
+    </section>
+
+
+    <!-- WORKSPACE -->
+
+    <section class="workspace">
+
+
+        <!-- INPUT CARD -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="step">
+                        01
+                    </span>
+
+                    <h2>
+                        Analyze Email
+                    </h2>
+
+                </div>
+
+                <span id="charCount">
+                    0 / 5000
+                </span>
+
+            </div>
+
+
+            <div class="textarea-container">
+
+                <textarea
+                    id="emailText"
+                    maxlength="5000"
+                    placeholder="Paste your email message here...
+
+Example:
+Congratulations! You have won a free prize. Claim your reward now."
+                ></textarea>
+
+                <button
+                    id="clearBtn"
+                    class="clear-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- QUICK EXAMPLES -->
+
+            <div class="quick-examples">
+
+                <span>
+                    Try an example:
+                </span>
+
+                <button data-example="spam">
+                    🎁 Suspicious Email
+                </button>
+
+                <button data-example="ham">
+                    💬 Normal Email
+                </button>
+
+            </div>
+
+
+            <!-- ANALYZE BUTTON -->
+
+            <button
+                id="checkBtn"
+                class="analyze-button"
+            >
+
+                <span>
+                    Analyze Email
+                </span>
+
+                <strong>
+                    →
+                </strong>
+
+            </button>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="loading"
+                class="loading hidden"
+            >
+
+                <span class="loading-dot"></span>
+
+                Running Naive Bayes analysis...
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESULT CARD -->
+
+        <div class="card result-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="step">
+                        02
+                    </span>
+
+                    <h2>
+                        Detection Result
+                    </h2>
+
+                </div>
+
+                <div class="shield-icon">
+                    ◈
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="emptyState"
+                class="empty-state"
+            >
+
+                <div class="empty-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    Waiting for an email
+                </h3>
+
+                <p>
+                    Your classification and confidence
+                    score will appear here.
+                </p>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="result"
+                class="hidden"
+            >
+
+                <div class="verdict">
+
+                    <div
+                        id="verdictIcon"
+                        class="verdict-icon"
+                    >
+                        ✓
+                    </div>
+
+
+                    <div class="verdict-name">
+
+                        <span>
+                            CLASSIFICATION
+                        </span>
+
+                        <h3 id="resultLabel">
+                            HAM
+                        </h3>
+
+                    </div>
+
+
+                    <div class="confidence">
+
+                        <strong id="confidence">
+                            0%
+                        </strong>
+
+                        <span>
+                            confidence
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    id="resultMessage"
+                    class="result-message"
+                ></p>
+
+
+                <!-- SPAM -->
+
+                <div class="probability">
+
+                    <div class="probability-header">
+
+                        <span>
+                            Spam Probability
+                        </span>
+
+                        <strong id="spamProbability">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div id="spamBar"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HAM -->
+
+                <div class="probability">
+
+                    <div class="probability-header">
+
+                        <span>
+                            Legitimate Probability
+                        </span>
+
+                        <strong id="hamProbability">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress ham-progress">
+
+                        <div id="hamBar"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-footer">
+
+                    <span>
+                        ✓ Analysis Complete
+                    </span>
+
+                    <span>
+                        Naive Bayes
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Fast Detection
+            </h3>
+
+            <p>
+                Instant email classification through REST API.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Probability Based
+            </h3>
+
+            <p>
+                Understand how confident the model is.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Java Backend
+            </h3>
+
+            <p>
+                Spring Boot with Naive Bayes from scratch.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    SpamShield AI
+
+    <span>•</span>
+
+    Java
+
+    <span>•</span>
+
+    Spring Boot
+
+    <span>•</span>
+
+    Machine Learning
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

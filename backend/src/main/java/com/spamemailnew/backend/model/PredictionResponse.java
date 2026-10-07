@@ -1,0 +1,1 @@
+package com.spamemailnew.backend.model; public record PredictionResponse(String prediction,double spamProbability,double hamProbability,String message) {}
