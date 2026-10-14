@@ -1,4 +1,6 @@
-const API_URL = "https://01a115a2-1948-7229-a322-29f808375d27-8080.eur-1.aiven.app/api/predict";
+
+const API_URL = "https://spamemailnew.onrender.com/api/predict";
+
 
 
 const emailText = document.getElementById("emailText");
